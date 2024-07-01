@@ -1,6 +1,6 @@
 import express from "express";
 const app = express();
-require("dotenv").config();
+import "dotenv/config";
 const api_key = process.env.WEATHER_API_KEY;
 
 app.get("/api/hello", async (req, res) => {
