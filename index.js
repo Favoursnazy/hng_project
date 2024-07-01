@@ -12,24 +12,17 @@ app.get("/api/hello", async (req, res) => {
     req.headers["x-forwarded-for"] ||
     req.socket.remoteAddress ||
     "";
-  res.send(ipAddress);
-  // fetch("https://api.ipify.org?format=json")
-  //   .then((response) => response.json())
-  //   .then(async (data) => {
-  //     const fetch_res = await fetch(
-  //       `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${data.ip}`
-  //     );
-  //     const fetch_data = await fetch_res.json();
 
-  //     return res.json({
-  //       client_ip: data.ip,
-  //       location: fetch_data.location.region,
-  //       greeting: `Hello,  ${name}!, the temperature is ${fetch_data.current.temp_c} degrees Celcius in ${fetch_data.location.region}`,
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error fetching IP:", error);
-  //   });
+  const fetch_res = await fetch(
+    `https://api.weatherapi.com/v1/current.json?key=${api_key}&q=${ipAddress}`
+  );
+  const fetch_data = await fetch_res.json();
+
+  return res.json({
+    client_ip: data.ip,
+    location: fetch_data.location.region,
+    greeting: `Hello,  ${name}!, the temperature is ${fetch_data.current.temp_c} degrees Celcius in ${fetch_data.location.region}`,
+  });
 });
 
 app.listen(5000);
