@@ -19,7 +19,7 @@ app.get("/api/hello", async (req, res) => {
   const fetch_data = await fetch_res.json();
 
   return res.json({
-    client_ip: data.ip,
+    client_ip: ipAddress,
     location: fetch_data.location.region,
     greeting: `Hello,  ${name}!, the temperature is ${fetch_data.current.temp_c} degrees Celcius in ${fetch_data.location.region}`,
   });
