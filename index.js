@@ -1,8 +1,7 @@
 import express from "express";
 const app = express();
-const api_key = "ec597486637f415e8d4170001240107";
-
-app.set("trust proxy", true);
+require("dotenv").config();
+const api_key = process.env.WEATHER_API_KEY;
 
 app.get("/api/hello", async (req, res) => {
   const name = req.query.visitor_name;
