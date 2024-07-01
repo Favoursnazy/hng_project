@@ -3,6 +3,8 @@ const app = express();
 import "dotenv/config";
 const api_key = process.env.WEATHER_API_KEY;
 
+console.log(api_key);
+
 app.get("/api/hello", async (req, res) => {
   const name = req.query.visitor_name;
   const ipAddress =
