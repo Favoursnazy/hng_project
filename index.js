@@ -6,7 +6,12 @@ app.set("trust proxy", true);
 
 app.get("/api/hello", async (req, res) => {
   const name = req.query.visitor_name;
-  const ipAddress = req.socket.remoteAddress;
+  const ipAddress =
+    req.headers["cf-connecting-ip"] ||
+    req.headers["x-real-ip"] ||
+    req.headers["x-forwarded-for"] ||
+    req.socket.remoteAddress ||
+    "";
   res.send(ipAddress);
   // fetch("https://api.ipify.org?format=json")
   //   .then((response) => response.json())
